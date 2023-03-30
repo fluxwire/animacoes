@@ -65,58 +65,61 @@ class _CustonExpansionTitleState extends State<CustonExpansionTitle> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        GestureDetector(
-          onTap: () {
-            setState(() {
-              expandir = !expandir;
-            });
-          },
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            decoration: const BoxDecoration(
-              color: Colors.white,
-            ),
-            height: 50,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Expanded(
-                  flex: 1,
-                  child: Text(widget.item),
-                ),
-                AnimatedRotation(
-                  duration: const Duration(milliseconds: 400),
-                  curve: Curves.easeIn,
-                  turns: expandir == false ? 0 : 0.5,
-                  child: const Icon(Icons.keyboard_arrow_down),
-                ),
-              ],
-            ),
-          ),
-        ),
-        AnimatedAlign(
-          heightFactor: expandir == false ? 0 : 1,
-          duration: const Duration(milliseconds: 400),
-          alignment: Alignment.topCenter,
-          curve: Curves.easeIn,
-          child: Container(
-            color: Colors.white,
-            child: Column(
-              children: const [
-                Image(
-                    image: AssetImage('assets/flutter_image.png'),
-                    fit: BoxFit.fill,
-                    width: 50),
-                Text(
-                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'),
-              ],
+    return Container(
+      clipBehavior: Clip.hardEdge,
+      decoration: const BoxDecoration(
+        color: Colors.transparent,
+      ),
+      child: Column(
+        children: [
+          GestureDetector(
+            onTap: () {
+              setState(() {
+                expandir = !expandir;
+              });
+            },
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              height: 50,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Expanded(
+                    flex: 1,
+                    child: Text(widget.item),
+                  ),
+                  AnimatedRotation(
+                    duration: const Duration(milliseconds: 400),
+                    curve: Curves.easeIn,
+                    turns: expandir == false ? 0 : 0.5,
+                    child: const Icon(Icons.keyboard_arrow_down),
+                  ),
+                ],
+              ),
             ),
           ),
-        ),
-      ],
+          AnimatedAlign(
+            heightFactor: expandir == false ? 0 : 1,
+            duration: const Duration(milliseconds: 400),
+            alignment: Alignment.topCenter,
+            curve: Curves.easeIn,
+            child: Container(
+              // color: Colors.white,
+              child: Column(
+                children: const [
+                  Image(
+                      image: AssetImage('assets/flutter_image.png'),
+                      fit: BoxFit.fill,
+                      width: 50),
+                  Text(
+                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
